@@ -7,16 +7,23 @@ const certificate = caPath ? fs.readFileSync(caPath).toString() : false;
 
 // change to run any db setup queries needed
 const SQL = `
-CREATE TABLE IF NOT EXISTS test (
-  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  value VARCHAR ( 255 )
-);
-
-INSERT INTO test (value) 
-VALUES
-  ('1'),
-  ('foo'),
-  ('bar');
+  CREATE TABLE IF NOT EXISTS items (
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    name TEXT,
+    description TEXT,
+    price MONEY,
+    inventory INTEGER
+  );
+  CREATE TABLE IF NOT EXISTS categories (
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    name TEXT,
+    descritption TEXT
+  );
+  CREATE TABLE IF NOT EXISTS item_category (
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    item_id INTEGER,
+    category_id INTEGER
+  );
 `;
 
 async function main() {

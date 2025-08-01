@@ -1,7 +1,7 @@
 {
-  "name": "express-postgresql-template",
+  "name": "inventory-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "A fullstack express-postgreSQL web app for The Odin Project course",
   "license": "ISC",
   "author": "WitherMite",
   "type": "commonjs",
