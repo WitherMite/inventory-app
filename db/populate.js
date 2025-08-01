@@ -17,7 +17,7 @@ const SQL = `
   CREATE TABLE IF NOT EXISTS categories (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name TEXT,
-    descritption TEXT
+    description TEXT
   );
   CREATE TABLE IF NOT EXISTS item_category (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
