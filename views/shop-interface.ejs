@@ -1,6 +1,15 @@
 <div class="shop-interface">
-  <search><form action="/" class="item-search"></form></search>
-  <form action="/" class="categories"></form>
+  <search>
+    <form action="/" class="item-search">
+      <input type="search" name="q" id="item-search" />
+      <button type="submit">Search</button>
+    </form>
+  </search>
+  <div class="categories">
+    <% categories.forEach((category, i) => { %>
+    <a href="/category?c=<%=category.id%>"><%=category.name%></a>
+    <%});%>
+  </div>
   <div class="items">
     <!-- generated list of items that fit search query-->
   </div>
