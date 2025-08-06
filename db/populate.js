@@ -40,6 +40,30 @@ const SQL = `
   ON CONFLICT (name) DO NOTHING;
 
   -- add items
+
+  INSERT INTO items (name, description, price, inventory)
+  VALUES ('Placeholder Farms Whole Carrots', '1lb bag of crisp orange carrots.', 1.37 , 123)
+  ON CONFLICT (name) DO NOTHING;
+
+  INSERT INTO items (name, description, price, inventory)
+  VALUES ('Placeholder Farms Banana Bunch', 'Bunch of organic bananas.', 2.49 , 301)
+  ON CONFLICT (name) DO NOTHING;
+
+  INSERT INTO items (name, description, price, inventory)
+  VALUES ('Placeholder Farms Sirloin Steak', '1lb Tray of 4 fresh sirloin steaks.', 16.43 , 32)
+  ON CONFLICT (name) DO NOTHING;
+
+  INSERT INTO items (name, description, price, inventory)
+  VALUES ('Placeholder Farms Whole Chicken', 'Free range whole chicken.', 9.89 , 65)
+  ON CONFLICT (name) DO NOTHING;
+
+  INSERT INTO items (name, description, price, inventory)
+  VALUES ('Steel 8" Chef Knife', 'A kitchen essential, versatile and sharp.', 51.48 , 6)
+  ON CONFLICT (name) DO NOTHING;
+
+  INSERT INTO items (name, description, price, inventory)
+  VALUES ('12" Cast Iron Skillet', 'A favorite of many cooks, and compatible with induction, ceramic, electric, and gas cooktops.', 15.29 , 24)
+  ON CONFLICT (name) DO NOTHING;
   
   -- add items to categories
 `;

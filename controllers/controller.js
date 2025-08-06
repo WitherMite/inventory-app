@@ -2,7 +2,8 @@ const db = require("../db/queries");
 
 exports.renderIndex = async (req, res) => {
   const categories = await db.getCategories();
-  res.render("index", { categories });
+  const items = await db.getItems();
+  res.render("index", { categories, items });
 };
 
 exports.renderCategory = async (req, res) => {

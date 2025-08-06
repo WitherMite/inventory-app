@@ -6,11 +6,23 @@
     </form>
   </search>
   <div class="categories">
-    <% categories.forEach((category, i) => { %>
-    <a href="/category?c=<%=category.id%>"><%=category.name%></a>
+    <% categories.forEach((category) => { %>
+    <a href="/category?c=<%=category.id%>" class="category-link">
+      <%=category.name%>
+    </a>
     <%});%>
   </div>
   <div class="items">
     <!-- generated list of items that fit search query-->
+    <% items.forEach((item) => { %>
+    <a href="/item?c=<%=item.id%>" class="item-link">
+      <div class="item-card">
+        <h2><%=item.name%></h2>
+        <p><%=item.description%></p>
+        <p><%=item.price%></p>
+        <p><%=item.inventory%></p>
+      </div>
+    </a>
+    <%});%>
   </div>
 </div>
