@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop Inventory</title>
+    <link rel="stylesheet" href="/styles/style.css" />
+  </head>
+  <body>
+    <% let isEdit = locals.asEdit === undefined ? false : locals.asEdit; %>
+    <form action="/edit-item" method="post">
+      <% if (isEdit) { %>
+      <div class="form-control">
+        <label for=""></label><input type="text" />
+      </div>
+      <div class="form-control">
+        <label for=""></label><input type="text" />
+      </div>
+      <div class="form-control">
+        <label for=""></label><input type="text" />
+      </div>
+      <div class="form-control">
+        <label for=""></label><input type="text" />
+      </div>
+      <button type="button">Back</button>
+      <button type="submit">Submit</button>
+      <% } else { %>
+      <div class="item-card">
+        <h2><%=item.name%></h2>
+        <p><%=item.description%></p>
+        <p><%=item.price%></p>
+        <p><%=item.inventory%></p>
+      </div>
+      <a href="/"><button type="button">Home</button></a>
+      <button type="button">Edit</button>
+      <% } %>
+    </form>
+    <!-- add a list of categories and a way to edit what it is in -->
+  </body>
+</html>

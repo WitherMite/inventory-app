@@ -7,6 +7,11 @@ exports.renderIndex = async (req, res) => {
 };
 
 exports.renderCategory = async (req, res) => {
-  // TODO: render a detailed view of category and the items it contains
-  res.render("index");
+  const category = (await db.getCategoryById(req.query.q))[0];
+  res.render("view-category", { category });
+};
+
+exports.renderItem = async (req, res) => {
+  const item = (await db.getItemById(req.query.q))[0];
+  res.render("view-item", { item });
 };

@@ -9,3 +9,15 @@ exports.getItems = async () => {
   const { rows } = await pool.query("SELECT * FROM items;");
   return rows;
 };
+
+exports.getCategoryById = async (id) => {
+  const { rows } = await pool.query("SELECT * FROM categories WHERE id = $1;", [
+    id,
+  ]);
+  return rows;
+};
+
+exports.getItemById = async (id) => {
+  const { rows } = await pool.query("SELECT * FROM items WHERE id = $1;", [id]);
+  return rows;
+};
