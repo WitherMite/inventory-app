@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="/styles/style.css" />
   </head>
   <body>
-    <% let isEdit = locals.asEdit === undefined ? false : locals.asEdit; %>
     <form action="/edit-item" method="post">
-      <% if (isEdit) { %>
+      <% if (locals.isEdit) { %>
       <div class="form-control">
         <label for=""></label><input type="text" />
       </div>
