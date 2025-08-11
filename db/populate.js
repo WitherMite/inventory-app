@@ -66,6 +66,24 @@ const SQL = `
   ON CONFLICT (name) DO NOTHING;
   
   -- add items to categories
+  
+  INSERT INTO item_category (item_id, category_id)
+  VALUES (1, 1);
+
+  INSERT INTO item_category (item_id, category_id)
+  VALUES (2, 1);
+
+  INSERT INTO item_category (item_id, category_id)
+  VALUES (3, 2);
+
+  INSERT INTO item_category (item_id, category_id)
+  VALUES (4, 2);
+
+  INSERT INTO item_category (item_id, category_id)
+  VALUES (5, 3);
+
+  INSERT INTO item_category (item_id, category_id)
+  VALUES (6, 3);
 `;
 
 async function main() {

@@ -8,7 +8,8 @@ exports.renderIndex = async (req, res) => {
 
 exports.renderCategory = async (req, res) => {
   const category = (await db.getCategoryById(req.query.q))[0];
-  res.render("view-category", { category });
+  const items = await db.getItemsByCategory(category.id);
+  res.render("view-category", { category, items });
 };
 
 exports.renderItem = async (req, res) => {

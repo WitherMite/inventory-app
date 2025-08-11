@@ -19,13 +19,14 @@
       <button type="submit">Submit</button>
       <% } else { %>
       <div class="category-card">
-        <h2><%=category.name%></h2>
+        <h1><%=category.name%></h1>
         <p><%=category.description%></p>
       </div>
       <a href="/"><button type="button">Home</button></a>
       <button type="button">Edit</button>
       <% } %>
     </form>
-    <!-- view and edit items that are in category -->
+    <h2>Items:</h2>
+    <div class="items"><%- include("item-list", {items}); %></div>
   </body>
 </html>
