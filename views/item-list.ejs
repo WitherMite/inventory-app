@@ -1,0 +1,8 @@
+<% items.forEach((item) => { %>
+<a href="/item?q=<%=item.id%>" class="item-link">
+  <div class="item-card">
+    <h2><%=item.name%></h2>
+    <p><%=item.price%></p>
+  </div>
+</a>
+<%});%>
