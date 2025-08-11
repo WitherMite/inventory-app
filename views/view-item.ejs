@@ -25,15 +25,18 @@
       <button type="submit">Submit</button>
       <% } else { %>
       <div class="item-card">
-        <h2><%=item.name%></h2>
+        <h1><%=item.name%></h2>
         <p><%=item.description%></p>
         <p><%=item.price%></p>
         <p><%=item.inventory%></p>
       </div>
       <a href="/"><button type="button">Home</button></a>
       <button type="button">Edit</button>
+      <div class="categories">
+        <h2>Categor<%= categories.length > 1 ? "ies" : "y"%>:</h2>
+        <%- include("category-list", {categories}); %>
+      </div>
       <% } %>
-      <!-- add a list of categories and a way to edit what it is in -->
     </form>
   </body>
 </html>

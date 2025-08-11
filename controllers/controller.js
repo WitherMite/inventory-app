@@ -14,5 +14,6 @@ exports.renderCategory = async (req, res) => {
 
 exports.renderItem = async (req, res) => {
   const item = (await db.getItemById(req.query.q))[0];
-  res.render("view-item", { item });
+  const categories = await db.getCategoriesByItem(item.id);
+  res.render("view-item", { item, categories });
 };

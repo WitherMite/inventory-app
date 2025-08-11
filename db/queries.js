@@ -29,3 +29,11 @@ exports.getItemsByCategory = async (id) => {
   );
   return rows;
 };
+
+exports.getCategoriesByItem = async (id) => {
+  const { rows } = await pool.query(
+    "SELECT * FROM item_category JOIN categories ON categories.id = category_id WHERE item_id = $1;",
+    [id]
+  );
+  return rows;
+};
