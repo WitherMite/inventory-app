@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop Inventory</title>
+    <link rel="stylesheet" href="/styles/style.css" />
+  </head>
+  <body>
+    <form action="<%= locals.item ? "/item/edit?n" + item.id : "/item/new" %>" method="post">
+      <div class="form-control">
+        <label for="item-name">Name:</label>
+        <input type="text" name="name" id="item-name" value="<%= locals.item.name %>"/>
+      </div>
+
+      <div class="form-control">
+        <label for="item-description">Description:</label>
+        <textarea name="description" id="item-description">
+          <%= locals.item.description %>
+        </textarea>
+      </div>
+
+      <div class="form-control">
+        <label for="item-price">Price:</label>
+        <input type="number" name="price" id="item-price" value="<%= locals.item.price %>" step="0.01" min="0"/>
+      </div>
+
+      <div class="form-control">
+        <label for="item-inventory">Inventory:</label>
+        <input type="number" name="inventory" id="item-inventory" value="<%= locals.item.inventory %>" min="0"/>
+      </div>
+      
+      <a href="<%= locals.item ? "/item?q" + item.id : "/" %>">
+        <button type="button">Back</button>
+      </a>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

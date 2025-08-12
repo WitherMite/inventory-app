@@ -7,26 +7,13 @@
     <link rel="stylesheet" href="/styles/style.css" />
   </head>
   <body>
-    <form action="/edit-category" method="post">
-      <% if (locals.isEdit) { %>
-      <div class="form-control">
-        <label for=""></label><input type="text" />
-      </div>
-      <div class="form-control">
-        <label for=""></label><input type="text" />
-      </div>
-      <button type="button">Back</button>
-      <button type="submit">Submit</button>
-      <% } else { %>
-      <div class="category-card">
-        <h1><%=category.name%></h1>
-        <p><%=category.description%></p>
-      </div>
-      <a href="/"><button type="button">Home</button></a>
-      <button type="button">Edit</button>
-      <% } %>
-    </form>
-    <h2>Items:</h2>
+    <div class="category-card">
+      <h1><%=category.name%></h1>
+      <p><%=category.description%></p>
+    </div>
+    <a href="/"><button type="button">Home</button></a>
+    <button type="button">Edit</button>
+    <h2>Item<% if (items.length !== 1) { %> s <% } %>:</h2>
     <div class="items"><%- include("item-list", {items}); %></div>
   </body>
 </html>
