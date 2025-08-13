@@ -7,25 +7,18 @@
     <link rel="stylesheet" href="/styles/style.css" />
   </head>
   <body>
-    <form action="<%= locals.category ? "/category/edit?n" + category.id : "/category/new" %>" method="post">
+    <form action="<%= locals.category ? "/category/edit?n=" + category.id : "/category/new" %>" method="post">
       <div class="form-control">
         <label for="category-name">Name:</label>
-        <input
-          type="text"
-          name="name"
-          id="category-name"
-          value="<%= locals.category.name %>"
-        />
+        <input type="text" name="name" id="category-name" value="<%= locals.category?.name %>"/>
       </div>
 
       <div class="form-control">
         <label for="category-description">Description:</label>
-        <textarea name="description" id="category-description">
-          <%= locals.category.description %>
-        </textarea>
+        <textarea name="description" id="category-description"><%= locals.category?.description %></textarea>
       </div>
 
-      <a href="<%= locals.category ? "/category?q" + item.id : "/" %>">
+      <a href="<%= locals.category ? "/category?q=" + category.id : "/" %>">
         <button type="button">Back</button>
       </a>
       <button type="submit">Submit</button>

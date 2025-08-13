@@ -14,7 +14,7 @@
       <p><%=item.inventory%></p>
     </div>
     <a href="/"><button type="button">Home</button></a>
-    <button type="button">Edit</button>
+    <a href="/item/edit?n=<%= item.id %>"><button type="button">Edit</button></a>
     <div class="categories">
       <h2>Categor<%= categories.length === 1 ? "y" : "ies"%>:</h2>
       <%- include("category-list", {categories}); %>

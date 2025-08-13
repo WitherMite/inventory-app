@@ -17,3 +17,15 @@ exports.renderItem = async (req, res) => {
   const categories = await readDB.getCategoriesByItem(item.id);
   res.render("view-item", { item, categories });
 };
+
+exports.renderCategoryForm = async (req, res) => {
+  if (!req.query.n) return res.render("category-form");
+  const category = (await readDB.getCategoryById(req.query.n))[0];
+  res.render("category-form", { category });
+};
+
+exports.renderItemForm = async (req, res) => {
+  if (!req.query.n) return res.render("item-form");
+  const item = (await readDB.getItemById(req.query.n))[0];
+  res.render("item-form", { item });
+};

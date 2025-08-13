@@ -11,9 +11,13 @@
       <h1><%=category.name%></h1>
       <p><%=category.description%></p>
     </div>
+
     <a href="/"><button type="button">Home</button></a>
-    <button type="button">Edit</button>
-    <h2>Item<% if (items.length !== 1) { %> s <% } %>:</h2>
+    <a href="/category/edit?n=<%= category.id %>">
+      <button type="button">Edit</button>
+    </a>
+
+    <h2>Item<% if (items.length !== 1) { %>s<% } %>:</h2>
     <div class="items"><%- include("item-list", {items}); %></div>
   </body>
 </html>

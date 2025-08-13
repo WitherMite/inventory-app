@@ -7,30 +7,28 @@
     <link rel="stylesheet" href="/styles/style.css" />
   </head>
   <body>
-    <form action="<%= locals.item ? "/item/edit?n" + item.id : "/item/new" %>" method="post">
+    <form action="<%= locals.item ? "/item/edit?n=" + item.id : "/item/new" %>" method="post">
       <div class="form-control">
         <label for="item-name">Name:</label>
-        <input type="text" name="name" id="item-name" value="<%= locals.item.name %>"/>
+        <input type="text" name="name" id="item-name" value="<%= locals.item?.name %>"/>
       </div>
 
       <div class="form-control">
         <label for="item-description">Description:</label>
-        <textarea name="description" id="item-description">
-          <%= locals.item.description %>
-        </textarea>
+        <textarea name="description" id="item-description"><%= locals.item?.description %></textarea>
       </div>
 
       <div class="form-control">
         <label for="item-price">Price:</label>
-        <input type="number" name="price" id="item-price" value="<%= locals.item.price %>" step="0.01" min="0"/>
+        <input type="number" name="price" id="item-price" value="<%= locals.item?.price.substring(1) %>" step="0.01" min="0"/>
       </div>
 
       <div class="form-control">
         <label for="item-inventory">Inventory:</label>
-        <input type="number" name="inventory" id="item-inventory" value="<%= locals.item.inventory %>" min="0"/>
+        <input type="number" name="inventory" id="item-inventory" value="<%= locals.item?.inventory %>" min="0"/>
       </div>
       
-      <a href="<%= locals.item ? "/item?q" + item.id : "/" %>">
+      <a href="<%= locals.item ? "/item?q=" + item.id : "/" %>">
         <button type="button">Back</button>
       </a>
       <button type="submit">Submit</button>
