@@ -1,4 +1,7 @@
 const readDB = require("../db/read-queries");
+const writeDB = require("../db/write-queries");
+const validators = require("./validators");
+const { validationResult } = require("express-validator");
 
 exports.renderIndex = async (req, res) => {
   const categories = await readDB.getCategories();
@@ -29,3 +32,45 @@ exports.renderItemForm = async (req, res) => {
   const item = (await readDB.getItemById(req.query.n))[0];
   res.render("item-form", { item });
 };
+
+exports.editItem = [
+  // validators.item,
+  async (req, res) => {
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).render("index", {
+    //     errors: errors.array(),
+    //   });
+    // }
+    const { id, name, description, price, inventory, password } = req.body;
+    await writeDB.updateItem({
+      id,
+      name,
+      description,
+      price,
+      inventory,
+      password,
+    });
+    res.redirect("/item?q=" + id);
+  },
+];
+
+exports.editCategory = [
+  // validators.category,
+  async (req, res) => {
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).render("index", {
+    //     errors: errors.array(),
+    //   });
+    // }
+    const { id, name, description, password } = req.body;
+    await writeDB.updateCategory({
+      id,
+      name,
+      description,
+      password,
+    });
+    res.redirect("/category?q=" + id);
+  },
+];

@@ -8,4 +8,7 @@ router.get("/item", controller.renderItem);
 router.get(["/category/edit", "/category/new"], controller.renderCategoryForm);
 router.get(["/item/edit", "/item/new"], controller.renderItemForm);
 
+router.post("/category/edit", controller.editCategory);
+router.post("/item/edit", controller.editItem);
+
 module.exports = router;

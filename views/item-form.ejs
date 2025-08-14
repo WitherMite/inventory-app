@@ -8,9 +8,10 @@
   </head>
   <body>
     <form action="<%= locals.item ? "/item/edit?n=" + item.id : "/item/new" %>" method="post">
+      <input name="id" type="hidden" value="<%= locals.item?.id %>">
       <div class="form-control">
         <label for="item-name">Name:</label>
-        <input type="text" name="name" id="item-name" value="<%= locals.item?.name %>"/>
+        <input type="text" name="name" id="item-name" value="<%= locals.item?.name %>" required/>
       </div>
 
       <div class="form-control">
@@ -28,6 +29,11 @@
         <input type="number" name="inventory" id="item-inventory" value="<%= locals.item?.inventory %>" min="0"/>
       </div>
       
+      <div class="form-control">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required/>
+      </div>
+
       <a href="<%= locals.item ? "/item?q=" + item.id : "/" %>">
         <button type="button">Back</button>
       </a>
