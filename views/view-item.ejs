@@ -18,6 +18,11 @@
     <div class="categories">
       <h2>Categor<%= categories.length === 1 ? "y" : "ies"%>:</h2>
       <%- include("category-list", {categories}); %>
+      <a
+        href="/item-category/new?recieverId=<%= item.id %>&recieverType=item&optionsType=categories"
+      >
+        <button type="button">+</button>
+      </a>
     </div>
   </body>
 </html>

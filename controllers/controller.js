@@ -33,6 +33,33 @@ exports.renderItemForm = async (req, res) => {
   res.render("item-form", { item });
 };
 
+exports.renderItemCategoryForm = async (req, res) => {
+  const reciever = {
+    id: req.query.recieverId,
+    type: req.query.recieverType,
+  };
+  const optionsType = req.query.optionsType;
+  const list = [];
+
+  switch (optionsType) {
+    case "items":
+      const itemList = await readDB.getItemsNotInCategory(reciever.id);
+      list.push(...itemList);
+      break;
+    case "categories":
+      const categoryList = await readDB.getCategoriesNotInItem(reciever.id);
+      list.push(...categoryList);
+      break;
+    default:
+      throw new Error(`no valid list of options for "${optionsType}"`);
+  }
+
+  res.render("item-category-form", {
+    reciever,
+    options: { type: optionsType, list },
+  });
+};
+
 exports.editItem = [
   // validators.item,
   async (req, res) => {

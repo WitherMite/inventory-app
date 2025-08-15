@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop Inventory</title>
+    <link rel="stylesheet" href="/styles/style.css" />
+  </head>
+  <body>
+    <h1>Add <%= options.type %> to <%= reciever.type %></h1>
+    <form action="/item-category/new" method="post">
+      <input type="hidden" name="recieverId" value="<%= reciever.id %>" />
+      <input type="hidden" name="recieverType" value="<%= reciever.type %>" />
+
+      <label for="<%= options.type %>">Select <%= options.type %></label>
+      <select name="selectedId" id="<%= options.type %>" multiple required>
+        <option value=""></option>
+        <% options.list.forEach( option => { %>
+        <option value="<%= option.id %>"><%= option.name %></option>
+        <% }); %>
+      </select>
+
+      <a href="/"><button type="button">Home</button></a>
+      <button type="submit">Add to <%= reciever.type %></button>
+    </form>
+  </body>
+</html>

@@ -37,3 +37,19 @@ exports.getCategoriesByItem = async (id) => {
   );
   return rows;
 };
+
+exports.getItemsNotInCategory = async (id) => {
+  const { rows } = await pool.query(
+    "SELECT * FROM item_category JOIN items ON items.id = item_id WHERE category_id = $1;",
+    [id]
+  );
+  return rows;
+};
+
+exports.getCategoriesNotInItem = async (id) => {
+  const { rows } = await pool.query(
+    "SELECT * FROM item_category JOIN categories ON categories.id = category_id WHERE item_id = $1;",
+    [id]
+  );
+  return rows;
+};

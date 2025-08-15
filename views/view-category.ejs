@@ -17,7 +17,16 @@
       <button type="button">Edit</button>
     </a>
 
-    <h2>Item<% if (items.length !== 1) { %>s<% } %>:</h2>
-    <div class="items"><%- include("item-list", {items}); %></div>
+    <div class="items">
+      <h2>Item<% if (items.length !== 1) { %>s<% } %>:</h2>
+
+      <%- include("item-list", {items}); %>
+
+      <a
+        href="/item-category/new?recieverId=<%= category.id %>&recieverType=category&optionsType=items"
+      >
+        <button type="button">+</button>
+      </a>
+    </div>
   </body>
 </html>
