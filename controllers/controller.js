@@ -101,3 +101,35 @@ exports.editCategory = [
     res.redirect("/category?q=" + id);
   },
 ];
+
+exports.addItemCategories = [
+  // validators.category,
+  async (req, res) => {
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).render("index", {
+    //     errors: errors.array(),
+    //   });
+    // }
+    const { recieverId, recieverType, selectedIds, password } = req.body;
+    const entries = [];
+    switch (recieverType) {
+      case "item":
+        [...selectedIds].forEach((id) => {
+          entries.push([recieverId, id]);
+        });
+        break;
+      case "category":
+        [...selectedIds].forEach((id) => {
+          entries.push([id, recieverId]);
+        });
+        break;
+      default:
+        throw new Error(
+          `"${recieverType}" is not a valid target (item/category)`
+        );
+    }
+    await writeDB.addItemsToCategories(entries, password);
+    res.redirect("/");
+  },
+];

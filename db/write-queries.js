@@ -1,3 +1,4 @@
+const format = require("pg-format");
 const pool = require("./pool");
 
 const sendQuery = async (sql, values, password) => {
@@ -24,5 +25,17 @@ exports.updateCategory = async (fields) => {
     "UPDATE categories SET name = $1, description = $2 WHERE id = $3",
     [fields.name, fields.description, fields.id],
     fields.password
+  );
+};
+
+// where entries is a 2d array of id pairs - (item_id, category_id)
+exports.addItemsToCategories = async (entries, password) => {
+  await sendQuery(
+    format(
+      "INSERT INTO item_category (item_id, category_id) VALUES %L;",
+      entries
+    ),
+    [],
+    password
   );
 };

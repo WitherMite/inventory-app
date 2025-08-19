@@ -12,13 +12,20 @@
       <input type="hidden" name="recieverId" value="<%= reciever.id %>" />
       <input type="hidden" name="recieverType" value="<%= reciever.type %>" />
 
-      <label for="<%= options.type %>">Select <%= options.type %></label>
-      <select name="selectedId" id="<%= options.type %>" multiple required>
-        <option value=""></option>
-        <% options.list.forEach( option => { %>
-        <option value="<%= option.id %>"><%= option.name %></option>
-        <% }); %>
-      </select>
+      <div class="form-control">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required />
+      </div>
+
+      <div class="form-control">
+        <label for="<%= options.type %>">Select <%= options.type %></label>
+        <select name="selectedIds" id="<%= options.type %>" multiple required>
+          <option value=""></option>
+          <% options.list.forEach( option => { %>
+          <option value="<%= option.id %>"><%= option.name %></option>
+          <% }); %>
+        </select>
+      </div>
 
       <a href="/"><button type="button">Home</button></a>
       <button type="submit">Add to <%= reciever.type %></button>
