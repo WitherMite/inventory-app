@@ -8,7 +8,7 @@
   </head>
   <body>
     <form action="<%= locals.item ? "/item/edit?n=" + item.id : "/item/new" %>" method="post">
-      <input name="id" type="hidden" value="<%= locals.item?.id %>">
+      <%if (locals.item?.id) {%><input name="id" type="hidden" value="<%= locals.item?.id %>"><%}%>
       <div class="form-control">
         <label for="item-name">Name:</label>
         <input type="text" name="name" id="item-name" value="<%= locals.item?.name %>" required/>

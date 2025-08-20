@@ -28,6 +28,34 @@ exports.updateCategory = async (fields) => {
   );
 };
 
+exports.newItem = async (fields) => {
+  const { rows } = await sendQuery(
+    `
+      INSERT INTO items (name, description, price, inventory)
+      VALUES ($1, $2, $3 , $4)
+      ON CONFLICT (name) DO NOTHING
+      RETURNING id;
+    `,
+    [fields.name, fields.description, fields.price, fields.inventory],
+    fields.password
+  );
+  return rows[0].id;
+};
+
+exports.newCategory = async (fields) => {
+  const { rows } = await sendQuery(
+    `
+    INSERT INTO categories (name, description)
+    VALUES ($1, $2)
+    ON CONFLICT (name) DO NOTHING
+    RETURNING id;
+  `,
+    [fields.name, fields.description],
+    fields.password
+  );
+  return rows[0].id;
+};
+
 // where entries is a 2d array of id pairs - (item_id, category_id)
 exports.addItemsToCategories = async (entries, password) => {
   await sendQuery(
@@ -39,6 +67,8 @@ exports.addItemsToCategories = async (entries, password) => {
     password
   );
 };
+
+// TODO: remove all relations with the item/category when deleted as well
 
 exports.deleteItemById = async (id, password) => {
   await sendQuery("DELETE FROM items WHERE id = $1", [id], password);

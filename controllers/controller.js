@@ -102,6 +102,46 @@ exports.editCategory = [
   },
 ];
 
+exports.addItem = [
+  // validators.item,
+  async (req, res) => {
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).render("index", {
+    //     errors: errors.array(),
+    //   });
+    // }
+    const { name, description, price, inventory, password } = req.body;
+    const id = await writeDB.newItem({
+      name,
+      description,
+      price,
+      inventory,
+      password,
+    });
+    res.redirect("/item?q=" + id);
+  },
+];
+
+exports.addCategory = [
+  // validators.category,
+  async (req, res) => {
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).render("index", {
+    //     errors: errors.array(),
+    //   });
+    // }
+    const { name, description, password } = req.body;
+    const id = await writeDB.newCategory({
+      name,
+      description,
+      password,
+    });
+    res.redirect("/category?q=" + id);
+  },
+];
+
 exports.addItemCategories = [
   // validators.category,
   async (req, res) => {

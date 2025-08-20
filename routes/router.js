@@ -11,6 +11,8 @@ router.get("/item-category/new", controller.renderItemCategoryForm);
 
 router.post("/category/edit", controller.editCategory);
 router.post("/item/edit", controller.editItem);
+router.post("/category/new", controller.addCategory);
+router.post("/item/new", controller.addItem);
 router.post("/item-category/new", controller.addItemCategories);
 
 router.post("/category/delete", controller.deleteCategory);
