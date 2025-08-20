@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="/styles/style.css" />
   </head>
   <body>
-    <h1>Add <%= options.type %> to <%= reciever.type %></h1>
+    <h1>Add <%= options.type %> to <%= parent.type %></h1>
     <form action="/item-category/new" method="post">
-      <input type="hidden" name="recieverId" value="<%= reciever.id %>" />
-      <input type="hidden" name="recieverType" value="<%= reciever.type %>" />
+      <input type="hidden" name="parentId" value="<%= parent.id %>" />
+      <input type="hidden" name="parentType" value="<%= parent.type %>" />
 
       <div class="form-control">
         <label for="password">Password:</label>
@@ -28,7 +28,7 @@
       </div>
 
       <a href="/"><button type="button">Home</button></a>
-      <button type="submit">Add to <%= reciever.type %></button>
+      <button type="submit">Add to <%= parent.type %></button>
     </form>
   </body>
 </html>

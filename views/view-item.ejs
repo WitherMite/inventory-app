@@ -15,11 +15,36 @@
     </div>
     <a href="/"><button type="button">Home</button></a>
     <a href="/item/edit?n=<%= item.id %>"><button type="button">Edit</button></a>
+
+    <form action="/item/delete" method="post" id="delete-form">
+      <input type="hidden" name="id" value="<%= item.id %>" />
+      <script>
+        function openForm() {
+          const dialog = document.querySelector(".delete-dialog");
+          dialog.showModal();
+        }
+        function closeForm() {
+          const dialog = document.querySelector(".delete-dialog");
+          dialog.close();
+        }
+      </script>
+      <dialog class="delete-dialog">
+        <h2>Are you sure you want to delete <%=item.name%>?</h2>
+        <div class="form-control">
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" form="delete-form" required />
+        </div>
+        <button type="button" onclick="closeForm()">Close</button>
+        <button type="submit">Submit</button>
+      </dialog>
+      <button type="button" onclick="openForm()">Delete</button>
+    </form>
+
     <div class="categories">
       <h2>Categor<%= categories.length === 1 ? "y" : "ies"%>:</h2>
       <%- include("category-list", {categories}); %>
       <a
-        href="/item-category/new?recieverId=<%= item.id %>&recieverType=item&optionsType=categories"
+        href="/item-category/new?parentId=<%= item.id %>&parentType=item&optionsType=categories"
       >
         <button type="button">+</button>
       </a>

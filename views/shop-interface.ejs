@@ -5,6 +5,12 @@
       <button type="submit">Search</button>
     </form>
   </search>
-  <div class="categories"><%- include("category-list", {categories}); %></div>
-  <div class="items"><%- include("item-list", {items}); %></div>
+  <div class="categories">
+    <%- include("category-list", {categories}); %>
+    <a href="/category/new"><button type="button">New Category</button></a>
+  </div>
+  <div class="items">
+    <a href="/item/new"><button type="button">New Item</button></a>
+    <%- include("item-list", {items}); %>
+  </div>
 </div>

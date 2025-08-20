@@ -34,20 +34,20 @@ exports.renderItemForm = async (req, res) => {
 };
 
 exports.renderItemCategoryForm = async (req, res) => {
-  const reciever = {
-    id: req.query.recieverId,
-    type: req.query.recieverType,
+  const parent = {
+    id: req.query.parentId,
+    type: req.query.parentType,
   };
   const optionsType = req.query.optionsType;
   const list = [];
 
   switch (optionsType) {
     case "items":
-      const itemList = await readDB.getItemsNotInCategory(reciever.id);
+      const itemList = await readDB.getItemsNotInCategory(parent.id);
       list.push(...itemList);
       break;
     case "categories":
-      const categoryList = await readDB.getCategoriesNotInItem(reciever.id);
+      const categoryList = await readDB.getCategoriesNotInItem(parent.id);
       list.push(...categoryList);
       break;
     default:
@@ -55,7 +55,7 @@ exports.renderItemCategoryForm = async (req, res) => {
   }
 
   res.render("item-category-form", {
-    reciever,
+    parent,
     options: { type: optionsType, list },
   });
 };
@@ -111,25 +111,55 @@ exports.addItemCategories = [
     //     errors: errors.array(),
     //   });
     // }
-    const { recieverId, recieverType, selectedIds, password } = req.body;
+    const { parentId, parentType, selectedIds, password } = req.body;
     const entries = [];
-    switch (recieverType) {
+    switch (parentType) {
       case "item":
         [...selectedIds].forEach((id) => {
-          entries.push([recieverId, id]);
+          entries.push([parentId, id]);
         });
         break;
       case "category":
         [...selectedIds].forEach((id) => {
-          entries.push([id, recieverId]);
+          entries.push([id, parentId]);
         });
         break;
       default:
         throw new Error(
-          `"${recieverType}" is not a valid target (item/category)`
+          `"${parentType}" is not a valid target (item/category)`
         );
     }
     await writeDB.addItemsToCategories(entries, password);
+    res.redirect(`/${parentType}?q=${parentId}`);
+  },
+];
+
+exports.deleteItem = [
+  // validators.category,
+  async (req, res) => {
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).render("index", {
+    //     errors: errors.array(),
+    //   });
+    // }
+    const { id, password } = req.body;
+    await writeDB.deleteItemById(id, password);
+    res.redirect("/");
+  },
+];
+
+exports.deleteCategory = [
+  // validators.category,
+  async (req, res) => {
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).render("index", {
+    //     errors: errors.array(),
+    //   });
+    // }
+    const { id, password } = req.body;
+    await writeDB.deleteCategoryById(id, password);
     res.redirect("/");
   },
 ];

@@ -13,4 +13,8 @@ router.post("/category/edit", controller.editCategory);
 router.post("/item/edit", controller.editItem);
 router.post("/item-category/new", controller.addItemCategories);
 
+router.post("/category/delete", controller.deleteCategory);
+router.post("/item/delete", controller.deleteItem);
+// router.post("/item-category/delete", controller.removeItemCategories);
+
 module.exports = router;

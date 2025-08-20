@@ -8,6 +8,7 @@ const certificate = caPath ? fs.readFileSync(caPath).toString() : false;
 // change to run any db setup queries needed
 const SQL = `
   -- Set up tables
+  DROP TABLE items;
   CREATE TABLE IF NOT EXISTS items (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name TEXT UNIQUE,
@@ -15,11 +16,13 @@ const SQL = `
     price MONEY,
     inventory INTEGER
   );
+  DROP TABLE categories;
   CREATE TABLE IF NOT EXISTS categories (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name TEXT UNIQUE,
     description TEXT
   );
+  DROP TABLE item_category;
   CREATE TABLE IF NOT EXISTS item_category (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     item_id INTEGER,

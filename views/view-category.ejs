@@ -17,13 +17,43 @@
       <button type="button">Edit</button>
     </a>
 
+    <form action="/category/delete" method="post" id="delete-form">
+      <input type="hidden" name="id" value="<%= category.id %>" />
+      <script>
+        function openForm() {
+          const dialog = document.querySelector(".delete-dialog");
+          dialog.showModal();
+        }
+        function closeForm() {
+          const dialog = document.querySelector(".delete-dialog");
+          dialog.close();
+        }
+      </script>
+      <dialog class="delete-dialog">
+        <h2>Are you sure you want to delete <%=category.name%>?</h2>
+        <div class="form-control">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            form="delete-form"
+            required
+          />
+        </div>
+        <button type="button" onclick="closeForm()">Close</button>
+        <button type="submit">Submit</button>
+      </dialog>
+      <button type="button" onclick="openForm()">Delete</button>
+    </form>
+
     <div class="items">
       <h2>Item<% if (items.length !== 1) { %>s<% } %>:</h2>
 
       <%- include("item-list", {items}); %>
 
       <a
-        href="/item-category/new?recieverId=<%= category.id %>&recieverType=category&optionsType=items"
+        href="/item-category/new?parentId=<%= category.id %>&parentType=category&optionsType=items"
       >
         <button type="button">+</button>
       </a>

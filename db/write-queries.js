@@ -39,3 +39,19 @@ exports.addItemsToCategories = async (entries, password) => {
     password
   );
 };
+
+exports.deleteItemById = async (id, password) => {
+  await sendQuery("DELETE FROM items WHERE id = $1", [id], password);
+};
+
+exports.deleteCategoryById = async (id, password) => {
+  await sendQuery("DELETE FROM categories WHERE id = $1", [id], password);
+};
+
+exports.removeItemFromCategory = async (itemId, categoryId, password) => {
+  await sendQuery(
+    "DELETE FROM item_category WHERE item_id = $1 AND category_id = $2",
+    [itemId, categoryId],
+    password
+  );
+};
