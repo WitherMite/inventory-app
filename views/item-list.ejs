@@ -1,8 +1,43 @@
-<% items.forEach((item) => { %>
-<a href="/item?q=<%=item.id%>" class="item-link">
-  <div class="item-card">
+<% items.forEach((item, i) => { %>
+<div class="item-card">
+  <a href="/item?q=<%=item.id%>" class="item-link">
     <h2><%=item.name%></h2>
     <p><%=item.price%></p>
-  </div>
-</a>
+  </a>
+
+  <%if (locals.parent) {%>
+  <form action="/item-category/delete" method="post" id="delete-form-<%= i %>">
+    <input type="hidden" name="itemId" value="<%= item.id %>" />
+    <input type="hidden" name="categoryId" value="<%= parent.id %>" />
+    <script>
+      function openForm<%= i %>() {
+        const dialog = document.querySelector("#delete-dialog-<%= i %>");
+        dialog.showModal();
+      }
+      function closeForm<%= i %>() {
+        const dialog = document.querySelector("#delete-dialog-<%= i %>");
+        dialog.close();
+      }
+    </script>
+    <dialog class="delete-dialog" id="delete-dialog-<%= i %>">
+      <h2>
+        Are you sure you want to remove <%=item.name%> from <%=parent.name%>?
+      </h2>
+      <div class="form-control">
+        <label for="password-<%= i %>">Password:</label>
+        <input
+          type="password"
+          name="password"
+          id="password-<%= i %>"
+          form="delete-form-<%= i %>"
+          required
+        />
+      </div>
+      <button type="button" onclick="closeForm<%= i %>()">Close</button>
+      <button type="submit">Submit</button>
+    </dialog>
+    <button type="button" onclick="openForm<%= i %>()">Delete</button>
+  </form>
+  <% } %>
+</div>
 <%});%>

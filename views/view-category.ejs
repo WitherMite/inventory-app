@@ -50,7 +50,7 @@
     <div class="items">
       <h2>Item<% if (items.length !== 1) { %>s<% } %>:</h2>
 
-      <%- include("item-list", {items}); %>
+      <%- include("item-list", {items, parent: category}); %>
 
       <a
         href="/item-category/new?parentId=<%= category.id %>&parentType=category&optionsType=items"

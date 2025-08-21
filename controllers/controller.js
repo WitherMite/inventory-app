@@ -203,3 +203,18 @@ exports.deleteCategory = [
     res.redirect("/");
   },
 ];
+
+exports.removeItemCategory = [
+  // validators.category,
+  async (req, res) => {
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).render("index", {
+    //     errors: errors.array(),
+    //   });
+    // }
+    const { itemId, categoryId, password } = req.body;
+    await writeDB.removeItemFromCategory(itemId, categoryId, password);
+    res.redirect("/");
+  },
+];
